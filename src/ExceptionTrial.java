@@ -38,31 +38,47 @@ public class ExceptionTrial {
             }
             // Option 2: Retrieve a string from a specific index
             else if(userAction.equals("2")){
-                //Prompt th user to enter the index
-                System.out.println("Enter the index you want  to retrieve ");
-                int retIdx =Integer.parseInt(scanner.nextLine());
-
-                //Retrive and print  the string
-                System.out.println(strArr[retIdx]);
+               try {
+                   //prompt the user to enter the index
+                   System.out.println("Enter th index  you want retrieve");
+                   int retIdx=Integer.parseInt(scanner.nextLine());
+                   System.out.println("String at index "+retIdx+": "+strArr[retIdx]);
+               }catch (NumberFormatException e){
+                   System.out.println("invalid input! Please  enter a valid  integer");
+               }catch (ArrayIndexOutOfBoundsException e){
+                   System.out.println("Invalid index! Please enter an index  between 0 and "+(strArr.length-1));
+               }
             }
             //Option 3: Get the length of a string at a specific  index
             else if (userAction.equals("3")) {
-                //Promtp the user to enter th index
-                int retIdx =Integer.parseInt(scanner.nextLine());
+                try {
+                    //Promtp the user to enter th index
+                    int retIdx =Integer.parseInt(scanner.nextLine());
+                    System.out.println("Length of at string index "+retIdx+": "+strArr[retIdx].length());
+                }catch (NumberFormatException e){
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Invalid index! Please enter an index between 0 and " + (strArr.length -1));
+                }catch (NullPointerException e){
+                    System.out.println("No string exists at the specifed index!");
+                }
 
-                // Retrieve the string at the specified index and print its length
-                System.out.println(strArr[retIdx].length());
             }
             // Option 4:Get all the string in the array
             else if (userAction.equals("4")) {
                 for (int i = 0; i < 5; i++) {
-                    System.out.println(strArr[i]);
+                  if (strArr[i]!=null){
+                      System.out.println("Index "+i+": "+strArr[i]);
+                  }else {
+                      System.out.println("Index " + i + ": (null)");
+                  }
                 }
             }else {
                 break;
             }
-        }
 
+        }
+        scanner.close();
 
 
     }
